@@ -216,6 +216,7 @@ CREATE TABLE user_token (
     -- 相关id
     id               INT          AUTO_INCREMENT,
     account_id       BIGINT       NOT NULL,     -- 1-11位的非连续数字
+    region_id        TINYINT      NOT NULL,
     -- 记录用户缓存的数据和更新时间
     token_type       TINYINT      NOT NULL,     -- token类型 1.vortex接口token 2.officaial接口token
     token_value      CHAR(255)    NOT NULL,     -- token值
@@ -226,6 +227,6 @@ CREATE TABLE user_token (
 
     PRIMARY KEY (id), -- 主键
 
-    UNIQUE INDEX idx_aid_type (token_type, account_id) -- 索引
+    UNIQUE INDEX idx_aid_type (region_id, account_id, token_type) -- 索引
 );
 ```
