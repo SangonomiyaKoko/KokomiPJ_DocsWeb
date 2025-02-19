@@ -206,3 +206,26 @@ Value：总场次，22位Bit存储
    - 解析耗时：0.001 ± 0.001 s
 
 结论: 在花费时间基本不变的情况下，减少了数据库 55% 的存储空间
+
+### Table 6: User_Token
+
+用于用户的 Token 相关数据
+
+```sql
+CREATE TABLE user_token (
+    -- 相关id
+    id               INT          AUTO_INCREMENT,
+    account_id       BIGINT       NOT NULL,     -- 1-11位的非连续数字
+    -- 记录用户缓存的数据和更新时间
+    token_type       TINYINT      NOT NULL,     -- token类型 1.vortex接口token 2.officaial接口token
+    token_value      CHAR(255)    NOT NULL,     -- token值
+    expired_at       TIMESTAMP    DEFAULT NULL, -- [可选]token过期时间
+    -- 记录数据创建的时间和更新时间略
+    created_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       TIMESTAMP    DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id), -- 主键
+
+    UNIQUE INDEX idx_aid_type (token_type, account_id) -- 索引
+);
+```
