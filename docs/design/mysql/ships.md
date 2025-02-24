@@ -60,3 +60,4 @@ CREATE TABLE ship_{ship_id} (
     UNIQUE INDEX idx_sid_rid_aid (region_id, account_id) -- 主键
 );
 ```
+

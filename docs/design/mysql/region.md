@@ -56,16 +56,24 @@ VALUES
 
 ```sql
 CREATE TABLE region_version (
-    region_id      TINYINT        NOT NULL,
-    game_version   VARCHAR(10)    NOT NULL,
+    id               INT          AUTO_INCREMENT,
+    region_id        TINYINT      NOT NULL,
+    game_version     VARCHAR(10)  DEFAULT NULL,
+    version_start    TIMESTAMP    DEFAULT NULL,
+    full_version     VARCHAR(100) DEFAULT NULL,
+    -- 记录数据创建的时间和更新时间略
+    created_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       TIMESTAMP    DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (region_id),
+    PRIMARY KEY (id), -- 主键
+
+    UNIQUE INDEX idx_rid (region_id), -- 索引
 
     FOREIGN KEY (region_id) REFERENCES region(region_id) ON DELETE CASCADE -- 外键
 );
 
 INSERT INTO region_version
-    (region_id, game_version)
+    (region_id)
 VALUES
-    (1, '13.11.0'), (2, '13.11.0'), (3, '13.11.0'), (4, '13.10.0'), (5, '13.11.0');
+    (1), (2), (3), (4), (5);
 ```
