@@ -51,34 +51,10 @@ Bot 用户绑定数据的缓存
 }
 ```
 
-## Func5: 账号用户数据缓存
+## Func5: 用户Token数据缓存
 
 游戏账号用户名称数据的缓存
 
-**Key**: `db_cache:user_basic:{region_id}:{account_id}`
+**Key**: `token_cache:{token_type}:{region_id}:{account_id}`
 
 **Ex**: 24h
-
-```txt
-{
-    'id': 123456789,
-    'name': 'UserName',
-    'cid': 123456789 / None
-}
-```
-
-## Func5: 账号用户工会数据缓存
-
-游戏账号用户工会名称数据的缓存
-
-**Key**: `db_cache:clan_basic:{region_id}:{clan_id}`
-
-**Ex**: 24h
-
-```txt
-{
-    'id': 123456789,
-    'tag': 'ClanTag',
-    'league': 1
-}
-```
